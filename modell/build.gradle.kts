@@ -1,9 +1,12 @@
 plugins {
+    id("application")
     kotlin("jvm")
 }
 
 group = "org.example"
 version = "unspecified"
+
+
 
 repositories {
     mavenCentral()
@@ -18,4 +21,8 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+}
+
+application {
+    mainClass.set("org.example.MainKt")
 }
