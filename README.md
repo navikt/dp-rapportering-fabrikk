@@ -1,4 +1,4 @@
-# Dagpenger-SERVICENAME
+# dp-rapportering-fabrikk
 
 ## Komme i gang
 
