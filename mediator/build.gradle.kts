@@ -1,18 +1,17 @@
 plugins {
+    id("application")
     kotlin("jvm")
-    `java-library`
 }
 
 group = "org.example"
 version = "unspecified"
-
-
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation(project(":modell"))
     testImplementation(kotlin("test"))
 }
 
@@ -23,3 +22,6 @@ kotlin {
     jvmToolchain(21)
 }
 
+application {
+    mainClass.set("org.example.MainKt")
+}
