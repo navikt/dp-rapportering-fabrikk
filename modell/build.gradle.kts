@@ -3,10 +3,8 @@ plugins {
     `java-library`
 }
 
-group = "org.example"
+group = "no.nav.dapenger.rapportering.fabrikk"
 version = "unspecified"
-
-
 
 repositories {
     mavenCentral()
@@ -22,4 +20,3 @@ tasks.test {
 kotlin {
     jvmToolchain(21)
 }
-
