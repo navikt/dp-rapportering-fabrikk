@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm")
 }
 
-group = "no.nav.dapenger.rapportering.fabrikk"
+group = "no.nav"
 version = "unspecified"
 
 repositories {
@@ -27,7 +27,7 @@ kotlin {
 }
 
 application {
-    mainClass.set("org.example.MainKt")
+    mainClass.set("no.nav.dagpenger.rapportering.fabrikk.mediator.MainKt")
 }
 
 tasks.withType<ShadowJar> {

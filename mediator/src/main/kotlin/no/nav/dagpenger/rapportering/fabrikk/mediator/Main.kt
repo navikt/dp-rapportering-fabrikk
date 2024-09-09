@@ -1,4 +1,4 @@
-package org.example
+package no.nav.dagpenger.rapportering.fabrikk.mediator
 
 fun main() {
     while (true) {
