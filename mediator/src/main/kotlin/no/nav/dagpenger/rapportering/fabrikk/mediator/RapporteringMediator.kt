@@ -1,6 +1,5 @@
 package no.nav.dagpenger.rapportering.fabrikk.mediator
 
-import no.nav.dagpenger.rapportering.fabrikk.mediator.Configuration.defaultObjectMapper
 import no.nav.dagpenger.rapportering.fabrikk.modell.Rapporteringsperiode
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -24,10 +23,13 @@ class RapporteringMediator(
 
 fun Rapporteringsperiode.asMessage(ident: String): JsonMessage =
     JsonMessage.newMessage(
-        eventName = "ny_rapportering",
+        eventName = "behov",
         map =
             mapOf(
+                "@behov" to "ny_rapportering",
+                "@behovId" to "c777cdb5-0518-4cd7-b171-148c8c6401c4",
                 "ident" to ident,
-                "rapporteringsperiode" to defaultObjectMapper.writeValueAsString(this),
+                "fom" to periode.fraOgMed.toString(),
+                "@løsning" to this,
             ),
     )

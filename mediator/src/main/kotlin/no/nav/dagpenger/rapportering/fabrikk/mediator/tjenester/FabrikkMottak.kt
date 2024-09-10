@@ -15,9 +15,9 @@ class FabrikkMottak(
     init {
         River(rapidsConnection)
             .apply {
-                validate { it.demandValue("@event_name", "ny_rapportering") }
-                validate { it.requireKey("ident") }
-                validate { it.requireKey("fom") }
+                validate { it.demandValue("@event_name", "behov") }
+                validate { it.demandValue("@behov", "ny_rapportering") }
+                validate { it.requireKey("ident", "fom", "@behovId") }
                 validate { it.rejectKey("@løsning") }
             }.register(this)
     }
