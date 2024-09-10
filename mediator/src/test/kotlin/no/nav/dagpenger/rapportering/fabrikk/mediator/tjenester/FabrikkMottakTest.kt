@@ -25,13 +25,13 @@ class FabrikkMottakTest {
 
 fun nyRapporteringHendelse(
     ident: String,
-    periodeStart: String,
+    fraOgMed: String,
 ): String =
     //language=JSON
     """
     {
       "ident": "$ident",
-      "periodeStart": "$periodeStart",
+      "fom": "$fraOgMed",
       "@event_name": "ny_rapportering"
     } 
     """.trimIndent()

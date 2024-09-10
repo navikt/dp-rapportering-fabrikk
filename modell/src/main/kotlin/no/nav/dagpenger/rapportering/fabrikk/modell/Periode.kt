@@ -1,5 +1,6 @@
 package no.nav.dagpenger.rapportering.fabrikk.modell
 
+import java.time.DayOfWeek
 import java.time.LocalDate
 
 data class Periode(
@@ -12,6 +13,9 @@ data class Periode(
         }
         require(fraOgMed.isBefore(tilOgMed)) {
             "Fra og med-dato kan ikke være etter til og med-dato"
+        }
+        require(fraOgMed.dayOfWeek == DayOfWeek.MONDAY) {
+            "Fra og med-dato må være en mandag"
         }
     }
 }
