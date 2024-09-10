@@ -1,13 +1,17 @@
 package no.nav.dagpenger.rapportering.fabrikk.modell
 
-import java.time.LocalDate
+import no.nav.dagpenger.rapportering.fabrikk.modell.RapporteringsperiodeStatus.TilUtfylling
+import java.util.UUID
 
 data class Rapporteringsperiode(
-    val id: Long,
+    val id: UUID = UUID.randomUUID(),
     val periode: Periode,
     val dager: List<Dag>,
-    val kanSendesFra: LocalDate,
-    val kanSendes: Boolean,
-    val kanEndres: Boolean,
-    val status: RapporteringsperiodeStatus,
+    val kanSendes: Boolean = false,
+    val kanEndres: Boolean = true,
+    val status: RapporteringsperiodeStatus = TilUtfylling,
 )
+
+enum class RapporteringsperiodeStatus {
+    TilUtfylling,
+}

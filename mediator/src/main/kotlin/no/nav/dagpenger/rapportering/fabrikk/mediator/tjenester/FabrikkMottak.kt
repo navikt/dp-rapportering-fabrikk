@@ -6,6 +6,7 @@ import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
 import no.nav.helse.rapids_rivers.River
+import java.time.LocalDate
 
 class FabrikkMottak(
     rapidsConnection: RapidsConnection,
@@ -16,6 +17,7 @@ class FabrikkMottak(
             .apply {
                 validate { it.demandValue("@event_name", "ny_rapportering") }
                 validate { it.requireKey("ident") }
+                validate { it.requireKey("periodeStart") }
                 validate { it.rejectKey("@løsning") }
             }.register(this)
     }
@@ -25,9 +27,10 @@ class FabrikkMottak(
         context: MessageContext,
     ) {
         val ident = packet["ident"].asText()
-        logger.info { "Mottatt ny rapportering" }
-        sikkerlogg.info { "Mottatt ny rapportering for ident=$ident" }
-        mediator.behandle(ident)
+        val periodeStart = LocalDate.parse(packet["periodeStart"].asText())
+        logger.info { "Mottok ny rapportering" }
+        sikkerlogg.info { "Mottok ny rapportering for ident=$ident" }
+        mediator.behandle(ident, periodeStart)
     }
 
     companion object {
