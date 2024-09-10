@@ -1,7 +1,7 @@
 package no.nav.dagpenger.rapportering.fabrikk.mediator.tjenester
 
 import mu.KotlinLogging
-import no.nav.dagpenger.rapportering.fabrikk.mediator.Mediator
+import no.nav.dagpenger.rapportering.fabrikk.mediator.RapporteringMediator
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -10,7 +10,7 @@ import no.nav.helse.rapids_rivers.asLocalDate
 
 class FabrikkMottak(
     rapidsConnection: RapidsConnection,
-    private val mediator: Mediator,
+    private val rapporteringMediator: RapporteringMediator,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -32,7 +32,7 @@ class FabrikkMottak(
         logger.info { "Mottok ny rapportering" }
         sikkerlogg.info { "Mottok ny rapportering for ident=$ident" }
 
-        mediator.behandle(ident, fraOgMed)
+        rapporteringMediator.behandle(ident, fraOgMed)
     }
 
     companion object {
