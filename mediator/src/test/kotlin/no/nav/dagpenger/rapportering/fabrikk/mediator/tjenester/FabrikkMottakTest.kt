@@ -34,6 +34,6 @@ fun nyRapporteringHendelse(
       "@behov": "ny_rapportering",
       "@behovId": "c777cdb5-0518-4cd7-b171-148c8c6401c4",
       "ident": "$ident",
-      "fom": "$fraOgMed"
+      "fraOgMed": "$fraOgMed"
     } 
     """.trimIndent()

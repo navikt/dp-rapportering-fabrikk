@@ -18,7 +18,7 @@ class FabrikkMottak(
             .apply {
                 validate { it.demandValue("@event_name", "behov") }
                 validate { it.demandValue("@behov", "ny_rapportering") }
-                validate { it.requireKey("ident", "fom", "@behovId") }
+                validate { it.requireKey("ident", "fraOgMed", "@behovId") }
                 validate { it.rejectKey("@løsning") }
             }.register(this)
     }
@@ -28,7 +28,7 @@ class FabrikkMottak(
         context: MessageContext,
     ) {
         val ident = packet["ident"].asText()
-        val fraOgMed = packet["fom"].asLocalDate()
+        val fraOgMed = packet["fraOgMed"].asLocalDate()
 
         logger.info { "Mottok ny rapportering" }
         sikkerlogg.info { "Mottok ny rapportering for ident=$ident" }
