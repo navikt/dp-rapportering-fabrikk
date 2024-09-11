@@ -2,6 +2,7 @@ package no.nav.dagpenger.rapportering.fabrikk.mediator.tjenester
 
 import mu.KotlinLogging
 import no.nav.dagpenger.rapportering.fabrikk.mediator.RapporteringMediator
+import no.nav.dagpenger.rapportering.fabrikk.mediator.metrikker.RapporteringMetrikker
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.MessageContext
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -31,6 +32,8 @@ class FabrikkMottak(
 
         logger.info { "Mottok ny rapportering" }
         sikkerlogg.info { "Mottok ny rapportering for ident=$ident" }
+
+        RapporteringMetrikker.forespurt.inc()
 
         rapporteringMediator.behandle(ident, fraOgMed)
     }

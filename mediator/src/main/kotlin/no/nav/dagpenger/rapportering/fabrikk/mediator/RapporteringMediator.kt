@@ -1,5 +1,6 @@
 package no.nav.dagpenger.rapportering.fabrikk.mediator
 
+import no.nav.dagpenger.rapportering.fabrikk.mediator.metrikker.RapporteringMetrikker
 import no.nav.dagpenger.rapportering.fabrikk.modell.Rapporteringsperiode
 import no.nav.helse.rapids_rivers.JsonMessage
 import no.nav.helse.rapids_rivers.RapidsConnection
@@ -17,6 +18,7 @@ class RapporteringMediator(
                 rapidsConnection.publish(
                     it.asMessage(ident = ident).toJson(),
                 )
+                RapporteringMetrikker.opprettet.inc()
             }
     }
 }
