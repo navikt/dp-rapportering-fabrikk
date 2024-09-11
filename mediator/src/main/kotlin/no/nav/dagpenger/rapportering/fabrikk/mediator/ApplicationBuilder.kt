@@ -3,7 +3,6 @@ package no.nav.dagpenger.rapportering.fabrikk.mediator
 import mu.KotlinLogging
 import no.nav.dagpenger.rapportering.fabrikk.mediator.api.internalApi
 import no.nav.dagpenger.rapportering.fabrikk.mediator.tjenester.FabrikkMottak
-import no.nav.dagpenger.rapportering.fabrikk.mediator.tjenester.SoknadMottak
 import no.nav.helse.rapids_rivers.RapidApplication
 import no.nav.helse.rapids_rivers.RapidsConnection
 
@@ -30,7 +29,7 @@ internal class ApplicationBuilder(
         FabrikkMottak(rapidsConnection, rapporteringMediator).also {
             logger.info { "Startet FabrikkMottak" }
         }
-        SoknadMottak(rapidsConnection, rapporteringMediator)
+//        SoknadMottak(rapidsConnection, rapporteringMediator)
     }
 
     private companion object {
