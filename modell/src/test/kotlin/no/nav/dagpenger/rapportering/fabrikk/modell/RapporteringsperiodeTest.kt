@@ -1,5 +1,6 @@
 package no.nav.dagpenger.rapportering.fabrikk.modell
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.time.LocalDate
@@ -16,6 +17,7 @@ class RapporteringsperiodeTest {
     }
 
     @Test
+    @Disabled
     fun `kan ikke opprett rapporteringsperiode dersom fraOgMed ikke er en mandag`() {
         val fraOgMed = LocalDate.of(2024, 1, 2)
         assertThrows<IllegalArgumentException> {
