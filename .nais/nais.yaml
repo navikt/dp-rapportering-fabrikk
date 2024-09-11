@@ -28,3 +28,13 @@ spec:
     enabled: true
   kafka:
     pool: {{ kafka.pool }}
+  observability:
+    logging:
+      destinations:
+        - id: elastic
+  { { #if ingresses}}
+    ingresses:
+      { { #each ingresses as |url|}}
+          - {{url } }
+        {{/each } }
+  {{/if}
