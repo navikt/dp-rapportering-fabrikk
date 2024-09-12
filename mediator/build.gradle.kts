@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "no.nav"
-version = "unspecified"
+version = "0.0.1"
 
 repositories {
     mavenCentral()
