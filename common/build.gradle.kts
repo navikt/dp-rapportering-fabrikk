@@ -3,15 +3,13 @@ plugins {
     `java-library`
 }
 
-group = "no.nav.dapenger.rapportering.fabrikk"
+group = "no.nav.dagpenger.rapportering.fabrikk"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(project(":common"))
-
     testImplementation(kotlin("test"))
 }
 
@@ -19,5 +17,5 @@ tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(19)
 }

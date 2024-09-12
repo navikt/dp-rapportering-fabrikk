@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 include("modell")
 include("mediator")
+include("common")
