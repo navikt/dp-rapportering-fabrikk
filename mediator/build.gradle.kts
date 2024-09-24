@@ -27,6 +27,7 @@ dependencies {
     implementation("io.ktor:ktor-server-config-yaml:${libs.versions.ktor.get()}")
 
     testImplementation(kotlin("test"))
+    testImplementation(libs.rapids.and.rivers.test)
     testImplementation(libs.bundles.kotest.assertions)
     testImplementation(libs.mockk)
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.0")

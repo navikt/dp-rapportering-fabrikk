@@ -1,19 +1,26 @@
 package no.nav.dagpenger.rapportering.fabrikk.mediator.tjenester
 
+import com.github.navikt.tbd_libs.rapids_and_rivers.test_support.TestRapid
+import io.micrometer.core.instrument.Clock
+import io.micrometer.prometheusmetrics.PrometheusConfig
+import io.micrometer.prometheusmetrics.PrometheusMeterRegistry
 import io.mockk.mockk
 import io.mockk.verify
+import io.prometheus.metrics.model.registry.PrometheusRegistry
 import no.nav.dagpenger.rapportering.fabrikk.mediator.RapporteringMediator
-import no.nav.helse.rapids_rivers.testsupport.TestRapid
+import no.nav.dagpenger.rapportering.fabrikk.mediator.metrikker.RapporteringMetrikker
 import org.junit.jupiter.api.BeforeEach
 import java.time.LocalDate
 
 class FabrikkMottakTest {
     private val rapidConnection = TestRapid()
+    val rapporteringMetrikker =
+        RapporteringMetrikker(PrometheusMeterRegistry(PrometheusConfig.DEFAULT, PrometheusRegistry.defaultRegistry, Clock.SYSTEM))
     private val rapporteringMediator = mockk<RapporteringMediator>(relaxed = true)
 
     @BeforeEach
     fun setup() {
-        FabrikkMottak(rapidConnection, rapporteringMediator)
+        FabrikkMottak(rapidConnection, rapporteringMediator, rapporteringMetrikker)
     }
 
     @org.junit.jupiter.api.Test

@@ -1,17 +1,18 @@
 package no.nav.dagpenger.rapportering.fabrikk.mediator.tjenester
 
+import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
+import com.github.navikt.tbd_libs.rapids_and_rivers.River
+import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDate
+import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
+import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import mu.KotlinLogging
 import no.nav.dagpenger.rapportering.fabrikk.mediator.RapporteringMediator
 import no.nav.dagpenger.rapportering.fabrikk.mediator.metrikker.RapporteringMetrikker
-import no.nav.helse.rapids_rivers.JsonMessage
-import no.nav.helse.rapids_rivers.MessageContext
-import no.nav.helse.rapids_rivers.RapidsConnection
-import no.nav.helse.rapids_rivers.River
-import no.nav.helse.rapids_rivers.asLocalDate
 
 class FabrikkMottak(
     rapidsConnection: RapidsConnection,
     private val rapporteringMediator: RapporteringMediator,
+    private val rapporteringMetrikker: RapporteringMetrikker,
 ) : River.PacketListener {
     init {
         River(rapidsConnection)
@@ -33,7 +34,7 @@ class FabrikkMottak(
         logger.info { "Mottok ny rapportering" }
         sikkerlogg.info { "Mottok ny rapportering for ident=$ident" }
 
-        RapporteringMetrikker.forespurt.inc()
+        rapporteringMetrikker.forespurt.increment()
 
         rapporteringMediator.behandle(ident, fraOgMed)
     }

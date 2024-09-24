@@ -1,13 +1,14 @@
 package no.nav.dagpenger.rapportering.fabrikk.mediator
 
+import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
+import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
 import no.nav.dagpenger.rapportering.fabrikk.mediator.metrikker.RapporteringMetrikker
 import no.nav.dagpenger.rapportering.fabrikk.modell.Rapporteringsperiode
-import no.nav.helse.rapids_rivers.JsonMessage
-import no.nav.helse.rapids_rivers.RapidsConnection
 import java.time.LocalDate
 
 class RapporteringMediator(
     private val rapidsConnection: RapidsConnection,
+    private val rapporteringMetrikker: RapporteringMetrikker,
 ) {
     fun behandle(
         ident: String,
@@ -18,7 +19,7 @@ class RapporteringMediator(
                 rapidsConnection.publish(
                     it.asMessage(ident = ident).toJson(),
                 )
-                RapporteringMetrikker.opprettet.inc()
+                rapporteringMetrikker.opprettet.increment()
             }
     }
 }
