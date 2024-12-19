@@ -4,7 +4,9 @@ import com.github.navikt.tbd_libs.rapids_and_rivers.JsonMessage
 import com.github.navikt.tbd_libs.rapids_and_rivers.River
 import com.github.navikt.tbd_libs.rapids_and_rivers.asLocalDateTime
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageContext
+import com.github.navikt.tbd_libs.rapids_and_rivers_api.MessageMetadata
 import com.github.navikt.tbd_libs.rapids_and_rivers_api.RapidsConnection
+import io.micrometer.core.instrument.MeterRegistry
 import mu.KotlinLogging
 import no.nav.dagpenger.rapportering.fabrikk.mediator.RapporteringMediator
 import no.nav.dagpenger.rapportering.fabrikk.mediator.metrikker.RapporteringMetrikker
@@ -26,6 +28,8 @@ class SoknadMottak(
     override fun onPacket(
         packet: JsonMessage,
         context: MessageContext,
+        metadata: MessageMetadata,
+        meterRegistry: MeterRegistry,
     ) {
         logger.info { "Mottok søknad innsendt hendelse for søknad ${packet["søknadId"]}" }
         logger.info { "Søknadstidspunkt: ${packet["søknadstidspunkt"]}" }
@@ -37,7 +41,6 @@ class SoknadMottak(
 
         rapporteringMediator.behandle(ident, fraOgMed)
     }
-
     companion object {
         private val logger = KotlinLogging.logger {}
     }
