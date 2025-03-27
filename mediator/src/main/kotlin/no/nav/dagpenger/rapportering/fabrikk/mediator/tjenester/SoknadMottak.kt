@@ -41,6 +41,7 @@ class SoknadMottak(
 
         rapporteringMediator.behandle(ident, fraOgMed)
     }
+
     companion object {
         private val logger = KotlinLogging.logger {}
     }
